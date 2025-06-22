@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SUN - Student Union For Nation</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Bootstrap Icons (if used) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Your custom style.css (if you have one, ensure its content is included or it's empty) -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+    /* Page Header */
+        .page-header {
+            background-color: orange; /* Dark blue/grey */
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            /* Initial state for animation */
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Animation properties */
+        }
+        .page-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem; /* Larger title */
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr; /* Single column by default */
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr 2fr; /* Two columns on larger screens */
+            }
+        }
+
+        /* Contact Info Section */
+        .contact-info-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Initial state for animation */
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .contact-info-section.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-info-section h2 {
+            font-size: 2.25rem; /* Large heading */
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #FF8C00; /* Orange accent for icons */
+            margin-right: 1rem;
+            width: 2.5rem; /* Fixed width for icon alignment */
+            text-align: center;
+        }
+
+        .contact-item p, .contact-item a {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            margin: 0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #FF8C00; /* Orange hover for links */
+        }
+
+        /* Social Media Icons */
+        .social-links {
+            display: flex;
+            justify-content: center; /* Center on small screens */
+            gap: 1rem; /* space-x-4 equivalent */
+            margin-top: 2rem; /* mt-8 equivalent */
+        }
+        @media (min-width: 768px) {
+            .social-links {
+                justify-content: flex-start; /* justify-start on md */
+            }
+        }
+        .social-links a {
+            color: #6b7280; /* text-gray-500 equivalent */
+            transition: color 0.3s ease; /* transition-colors duration-300 */
+        }
+        .social-links a:hover.facebook { color: #1877f2; } /* hover:text-blue-600 */
+        .social-links a:hover.twitter { color: #1da1f2; }  /* hover:text-blue-400 */
+        .social-links a:hover.instagram { color: #e1306c; } /* hover:text-red-600 */
+        .social-links a:hover.youtube { color: red; } /* hover:text-blue-700 */
+        .social-links i {
+            font-size: 2rem; /* text-3xl equivalent */
+        }
+
+
+        /* Contact Form Section */
+        .contact-form-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            /* Initial state for animation */
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .contact-form-section.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-form-section h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.6rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            border-color: #FF8C00; /* Orange border on focus */
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2); /* Orange glow on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background-color: #FF8C00; /* Vibrant Orange */
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3); /* Subtle orange shadow */
+        }
+
+        .submit-button:hover {
+            background-color: #e67e00; /* Darker orange on hover */
+            transform: translateY(-3px); /* Lift effect */
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        .submit-button:active {
+            transform: translateY(0); /* Press down effect */
+            box-shadow: 0 2px 10px rgba(255, 140, 0, 0.3);
+        }
+
+        /* Success Message Card */
+        .success-card {
+            background-color: #fff3e0; /* Very light orange/peach */
+            color: #d68100; /* Darker orange text */
+            border: 1px solid #ffcc80; /* Orange border */
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.1);
+            /* Initial state for animation */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            max-width: 600px; /* Constrain width for better readability */
+            margin: 2rem auto;
+        }
+        .success-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .success-card h3 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #d68100;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .success-card .close-button {
+            background-color: #FF8C00; /* Orange button for close */
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .success-card .close-button:hover {
+            background-color: #e67e00;
+            transform: translateY(-2px);
+        }
+
+        /* Utility class to hide elements */
+        .hidden {
+            display: none;
+        }
+
+        /* Footer Styles (converted from Tailwind) */
+        .site-footer {
+            width: 100%;
+            background-color: #1a202c; /* Equivalent to gray-800 */
+            color: white;
+            padding: 1.5rem; /* Equivalent to p-6 */
+            text-align: center;
+            margin-top: 3rem; /* Equivalent to mt-12 */
+        }
+        .site-footer p {
+            font-size: 0.875rem; /* Equivalent to text-sm */
+        }
+    </style>
+</head>
+<body>
+<!-- Header (loaded by include.js) -->
+<div id="header"></div>
+    <!-- Page Header -->
+    <header class="page-header" id="pageHeader">
+        <h1>Connect With Us</h1>
+        <p>We'd love to hear from you! Reach out for inquiries, partnerships, or support.</p>
+    </header>
+
+    <main class="contact-container">
+        <!-- Contact Information Section -->
+        <section class="contact-info-section" id="contactInfoSection">
+            <div>
+                <h2 class="mb-4">Get in Touch</h2>
+                <div class="contact-item">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <p>Guntur,Andhra Pradesh,India</p>
+                </div>
+                <div class="contact-item">
+                    <i class="bi bi-phone-fill"></i>
+                    <p><a href="tel:+911234567890">+91 98765 43210</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="bi bi-envelope-fill"></i>
+                    <p><a href="mailto:info@sunorganization.org">studentunionfornation@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="bi bi-clock-fill"></i>
+                    <p>Mon - Sat: 9:00 AM - 6:00 PM</p>
+                </div>
+            </div>
+            <!-- Social Media Links -->
+            <div class="social-links-container">
+                <h3 class="text-xl font-semibold text-gray-700 mb-3">Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/groups/studentunionfornation/" class="social-icon facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="social-icon twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.instagram.com/student_union_for_nation/?hl=en" class="social-icon instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.youtube.com/@studentunionfornationsun639/featured" class="social-icon youtube"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-form-section" id="contactFormSection">
+            <h2>Send Us a Message</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" placeholder="Inquiry about volunteering" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+
+            <!-- Success Message Card (Initially hidden) -->
+            <div id="successMessage" class="success-card hidden">
+                <i class="bi bi-check-circle-fill text-green-500 text-5xl mb-4" style="color: #28a745; font-size: 3rem;"></i>
+                <h3>Message Sent Successfully!</h3>
+                <p>Thank you for contacting SUN Organization. We have received your message and will get back to you as soon as possible.</p>
+                <p>Please allow up to 48 hours for a response.</p>
+                <button id="closeSuccessMessage" class="close-button">Send Another Message</button>
+            </div>
+        </section>
+    </main>
+
+<!-- Footer -->
+  <div id="footer"></div>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="include.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SUN - Student Union For Nation</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Bootstrap Icons (if used) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Your custom style.css (if you have one, ensure its content is included or it's empty) -->
+    <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    .page-header {
+      background-color: orange;
+      color: white;
+      padding: 4rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .page-header.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .faq-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background-color: #fcfcfc;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .faq-question:hover {
+      background-color: #f0f0f0;
+    }
+
+    .faq-question i {
+      font-size: 1.5rem;
+      color: #FF8C00;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem;
+      height: 0;
+      overflow: hidden;
+      transition: height 0.4s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 1rem 1.5rem;
+    }
+
+    .faq-answer p,
+    .faq-answer ul {
+      margin: 0 0 1rem;
+      color: #444;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Header (loaded by include.js) -->
+<div id="header"></div>
+  <header class="page-header" id="pageHeader">
+    <h1>Frequently Asked Questions</h1>
+    <p>Find answers to common questions about our organization and initiatives.</p>
+  </header>
+
+  <main class="faq-container" id="faqSection">
+    <!-- FAQ Item 1 -->
+    <div class="faq-item">
+      <button class="faq-question">
+        What is the mission of SUN Organization?
+        <i class="bi bi-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>The SUN Organization is dedicated to student welfare and nation-building. Our mission is to empower every student with the tools and opportunities to excel, fostering a generation of responsible leaders who contribute positively to society.</p>
+        <p>We believe that by investing in education, health, and holistic development, we can create a brighter future for the next generation. Our efforts are focused on creating sustainable impact and fostering a culture of giving back.</p>
+      </div>
+    </div>
+
+    <!-- FAQ Item 2 -->
+    <div class="faq-item">
+      <button class="faq-question">
+        How can I volunteer with SUN Organization?
+        <i class="bi bi-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+                <p>We welcome volunteers from all backgrounds! You can register through our "Volunteer" section on the website. We have various roles available, from event support to mentorship and educational outreach.</p>
+                <p>Typical volunteer roles include:</p>
+                <ul>
+                    <li>Teaching assistant for after-school programs</li>
+                    <li>Event management and coordination</li>
+                    <li>Community outreach and awareness campaigns</li>
+                    <li>Administrative support</li>
+                    <li>Fundraising assistance</li>
+                </ul>
+                <p>Check our "Get Involved" page for current opportunities!</p>
+                <p>We conduct orientation sessions for new volunteers to familiarize them with our work and integrate them into our teams effectively. Your passion and time can truly make a difference!</p>
+            </div>
+    </div>
+
+    <!-- FAQ Item 3 -->
+    <div class="faq-item">
+      <button class="faq-question">
+        What types of programs does SUN Organization offer?
+        <i class="bi bi-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+                <p>We offer a diverse range of programs including:</p>
+                <ul>
+                    <li>**Educational Support:** Tutoring, scholarship programs, school supply drives.</li>
+                    <li>**Mentorship Summits:** Connecting students with industry professionals.</li>
+                    <li>**Health & Wellness Camps:** Free check-ups, nutrition awareness, mental health support.</li>
+                    <li>**Environmental Drives:** Tree plantations, clean-up campaigns.</li>
+                    <li>**Digital Literacy Initiatives:** Basic computer skills, online safety.</li>
+                    <li>**Vocational Training:** Skill development workshops for youth and adults.</li>
+                    <li>**Community Outreach:** Aid distribution, awareness programs.</li>
+                </ul>
+                <p>Our programs are designed to provide holistic development and support to students and communities, addressing both immediate needs and long-term empowerment.</p>
+                <p>We continuously evaluate and adapt our programs to meet the evolving needs of the communities we serve, ensuring maximum impact.</p>
+            </div>
+    </div>
+    <!-- FAQ Item 4 -->
+    <div class="faq-item">
+      <button class="faq-question">
+        How can I donate to SUN Organization?
+        <i class="bi bi-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+                <p>You can make a secure online donation through the "Donate" section on our website. We accept various payment methods, including credit/debit cards and popular digital wallets. For larger contributions or corporate partnerships, please contact our team directly via the "Contact Us" page.</p>
+                <p>Every contribution, big or small, helps us continue our vital work and expand our reach to more deserving individuals. Your generosity directly translates into educational opportunities, health benefits, and community development.</p>
+      </div>
+    </div>
+    <!-- FAQ Item 5 -->
+    <div class="faq-item">
+      <button class="faq-question">
+        Are my donations tax-deductible?
+        <i class="bi bi-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+                <p>Yes, SUN Organization is a registered non-profit and charitable organization. All donations made to us are tax-deductible to the full extent allowed by law in India. Upon successful processing of your donation, you will receive an official donation receipt via email for your records, which you can use for tax exemption purposes.</p>
+                <p>We adhere to all relevant legal and financial regulations to ensure your donation provides the maximum benefit and is fully compliant for tax purposes.</p>
+      </div>
+    </div>
+    <!-- FAQ Item 6 -->
+    <div class="faq-item">
+      <button class="faq-question">
+        How does SUN Organization ensure transparency?
+        <i class="bi bi-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+                <p>Transparency and accountability are fundamental to our operations. We ensure this through:</p>
+                <ul>
+                    <li>**Annual Reports:** Detailed reports outlining our financial expenditures, program impacts, and achievements are published annually on our website, accessible to the public.</li>
+                    <li>**Audited Financials:** Our accounts are regularly audited by independent external auditors, and summaries of these audits are available upon request.</li>
+                    <li>**Regular Updates:** We provide regular updates on our projects and initiatives through our news section, social media channels, and newsletters to our supporters.</li>
+                    <li>**Open Communication:** We maintain an open-door policy for inquiries from donors, partners, and the public regarding our operations and fund utilization. Our dedicated team is always ready to address your questions.</li>
+                </ul>
+                <p>Our goal is to ensure all stakeholders have clear visibility into how their support is making a tangible difference in the community, building trust and fostering long-term relationships.</p>
+                <p>You can also find more details on our "About Us" page, including our organizational structure and governance.</p>
+       </div>
+    </div>
+  </main>
+<!-- Footer -->
+  <div id="footer"></div>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="include.js"></script>
+
+</body>
+</html>
